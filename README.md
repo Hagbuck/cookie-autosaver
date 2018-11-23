@@ -18,7 +18,7 @@ Firstly, download the whole project.
 
 ### Server
 
-Next you have to install Node.js.
+Next you have to install Node.js : https://nodejs.org/en/
 
 Start the *Node.js command prompt* and go into the poject folder.
 
