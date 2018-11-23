@@ -23,7 +23,7 @@ function save_datas(){
 }
 
 
-var my_timeout = setInterval(save_datas, 60000 );
+var my_timeout = setInterval(save_datas, 600000 );
 
 //clearInterval(my_timeout);
 
