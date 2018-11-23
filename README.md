@@ -26,7 +26,7 @@ Execute `npm install express http fs logger` to install all the dependencies.
 
 By the way, the project should be runnable. Execute `node cookie-autosaver.js` to launch the server.
 
-### Client
+### Client : old method
 
 Open your cookie clicker game into your favorite browser, and open the developpers tools (it is often F12).
 
@@ -62,6 +62,16 @@ function save_datas(){
 
 
 var my_timeout = setInterval(save_datas, 600000 );
+```
+
+### Client : new method
+
+Execute simply this command into the console developper tools.
+
+```
+javascript:(function() {
+    Game.LoadMod('https://github.com/Hagbuck/cookie-autosaver/blob/master/autosaver-client.js');
+}());
 ```
 
 ## What's next ?

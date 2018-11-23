@@ -25,6 +25,8 @@ function save_datas(){
 
 var my_timeout = setInterval(save_datas, 600000 );
 
+console.log("[INFO] Autosaver addon launched !");
+
 //clearInterval(my_timeout);
 
 /*javascript:(function() {
