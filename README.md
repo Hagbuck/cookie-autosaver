@@ -12,6 +12,8 @@ You will add the *client* **addon** into your cookie clicker game. It will send 
 
 To be sure the server will not erased your *saved save*, it will keep on your hard drive, **X** last save. It can be usefull in the case which, by accident, you remove your cookie (Ctrl + F5) for exemple.
 
+To save manually, press `Ctrl + ²`
+
 ## How can I install it ?
 
 Firstly, download the whole project. 
@@ -26,45 +28,8 @@ Execute `npm install express http fs logger` to install all the dependencies.
 
 By the way, the project should be runnable. Execute `node cookie-autosaver.js` to launch the server.
 
-### Client : old method
 
-Open your cookie clicker game into your favorite browser, and open the developpers tools (it is often F12).
-
-Actually, you have to execute each part of the code separatly.
-
-First, load Jquery : 
-
-```
-var jq = document.createElement('script');
-jq.src = "https://code.jquery.com/jquery-3.3.1.min.js";
-document.getElementsByTagName('head')[0].appendChild(jq);
-```
-
-And launch the addon which will send your save to the server : 
-
-```
-function save_datas(){
-    $.ajax({
-        url: "http://localhost:2018",
-        data: { 
-            save : Game.WriteSave(1)
-        },
-        cache: false,
-        type: "GET",
-        success: function(response) {
-
-        },
-        error: function(xhr) {
-
-        }
-    });
-}
-
-
-var my_timeout = setInterval(save_datas, 600000 );
-```
-
-### Client : new method
+### Client
 
 Execute simply this command into the console developper tools.
 
