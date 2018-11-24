@@ -16,10 +16,12 @@ var express         = require('express')
 ;
 
 /**
- * constants
+ * default value and constants
  */
+var port            =   2018;
 var max_save_files  =   10;
-var save_folder     =   __dirname + '\\saves\\'
+var save_folder     =   __dirname + '\\saves\\';
+var properties_file =   __dirname + '\\conf.properties';
 
 /**
  * function get now date and time
@@ -59,10 +61,10 @@ function getNow(){
 }
 
 /**
- * function who rotate the X last files
+ * function which rotate the X last files
  */
 function rotate(){
-    console.log("----------- ROTATE -----------");
+    console.log("----------- ROTATE (" + max_save_files + ") -----------");
     fs.readdir(save_folder, function(err, items) {
         if(err){
             logger.error(err);
@@ -95,13 +97,37 @@ function rotate(){
 }
 
 /**
+ * function which use all properties
+ */
+function apply_properties(props){
+    console.log("[INFO] Read properties :");
+    props.each((key, value) => {
+        console.log("[" + key + "] : " + value);
+    })
+
+    var props_port          = props.get('server.port');
+    var props_save_folder   = props.get('server.save.folder');
+    var props_save_limit    = props.get('server.save.limit');
+
+    if(props_port)
+        port = props_port;
+    if(props_save_folder)
+        save_folder = props_save_folder;
+    if(props_save_limit
+        && props_save_limit > 0)
+        max_save_files = props_save_limit;
+}
+
+/**
  * Main execution
  */
 
 logger = logger.createLogger();
+var properties = props_reader(properties_file);
+apply_properties(properties);
 
 var app = express();
-app.set('port', process.env.PORT || 2018);
+app.set('port', process.env.PORT || port);
 
 http.createServer(app).listen(app.get('port'), function(){
   logger.info('Express server listening on port ' + app.get('port'));

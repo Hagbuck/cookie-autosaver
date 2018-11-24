@@ -24,7 +24,7 @@ Next you have to install Node.js : https://nodejs.org/en/
 
 Start the *Node.js command prompt* and go into the poject folder.
 
-Execute `npm install express http fs logger` to install all the dependencies.
+Execute `npm install express http fs logger properties-reader` to install all the dependencies.
 
 By the way, the project should be runnable. Execute `node cookie-autosaver.js` to launch the server.
 
