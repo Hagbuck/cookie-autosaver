@@ -1,9 +1,6 @@
 var jq = document.createElement('script');
 jq.src = "https://code.jquery.com/jquery-3.3.1.min.js";
 document.getElementsByTagName('head')[0].appendChild(jq);
-// ... give time for script to load, then type (or see below for non wait option);
-jQuery.noConflict();
-
 
 function save_datas(){
     $.ajax({
@@ -22,15 +19,9 @@ function save_datas(){
     });
 }
 
+function start(){
+    var my_timeout = setInterval(save_datas, 600000 );
+    console.log("[INFO] Autosaver addon launched !");
+}
 
-var my_timeout = setInterval(save_datas, 600000 );
-
-console.log("[INFO] Autosaver addon launched !");
-
-//clearInterval(my_timeout);
-
-/*javascript:(function() {
-    Game.LoadMod('https://aktanusa.github.io/CookieMonster/CookieMonster.js');
-}());*/
-
-//$("#commentsText").style.display = "none"
+var my_addon = setTimeout(start, 2000);
