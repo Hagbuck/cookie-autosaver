@@ -52,7 +52,7 @@ function getNow(){
           seconds = "0" + seconds;
     } 
     
-    return day + "-" + month + "-" + year + " " + hours + "-" + minutes + "-" + seconds;
+    return year + "-" + month + "-" + day + " " + hours + "-" + minutes + "-" + seconds;
                     ;
     return datetime;
 }
