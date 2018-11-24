@@ -1,7 +1,7 @@
 /**
  * Cookie Auto Saver
  * By Hackbug
- * 2018-11-23
+ * Server
  */
 
 
@@ -111,14 +111,17 @@ http.createServer(app).listen(app.get('port'), function(){
 
 app.get('/', function(req, res){
 
+    /* Allow cross origin */
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
+
 
     var save = req.query.save;
     var file_path = save_folder + getNow() + '.cc';
 
     logger.info('SAVE into ' + file_path);
 
+    /* Write the save */
     fs.writeFile(file_path, save, function(err){
         if(err){
             logger.error('Writing save failed');
