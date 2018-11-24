@@ -10,7 +10,7 @@ function load_jquery(){
 }
 
 function save_datas(){
-    console.log("[INFO] Sending save to " + server);
+    console.log("[INFO] Sending save to " + server + " at : " + new Date);
     $.ajax({
         url: server,
         data: { 
@@ -27,7 +27,21 @@ function save_datas(){
 
 function start(){
     var my_timeout = setInterval(save_datas, 600000);
+
+    key_binding_save();
+
     console.log("[INFO] Autosaver addon launched !");
+
+
+}
+
+function key_binding_save(){
+    window.addEventListener("keydown", event => {
+        if (event.key == "²" && event.ctrlKey) {
+            console.log("Manual save!");
+            save_datas();
+        }
+    });
 }
 
 load_jquery();
