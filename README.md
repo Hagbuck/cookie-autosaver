@@ -70,7 +70,7 @@ Execute simply this command into the console developper tools.
 
 ```
 javascript:(function() {
-    Game.LoadMod('https://github.com/Hagbuck/cookie-autosaver/blob/master/autosaver-client.js');
+    Game.LoadMod('http://hackbug.fr/cookie-autosaver/autosaver-client.js');
 }());
 ```
 
