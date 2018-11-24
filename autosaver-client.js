@@ -1,7 +1,8 @@
 /**
  * constantes
  */
-var server = "http://localhost:2018";
+var server  = "http://localhost";
+var port    = 2018
 
 function load_jquery(){
     var jq = document.createElement('script');
@@ -10,17 +11,22 @@ function load_jquery(){
 }
 
 function save_datas(){
-    console.log("[INFO] Sending save to " + server + " at : " + new Date);
+    console.log("[INFO] Sending save to " + server + ":" + port + " at : " + new Date);
     $.ajax({
-        url: server,
+        url: server + ":" + port,
         data: { 
             save : Game.WriteSave(1)
         },
         cache: false,
         type: "GET",
+        crossDomain: true,
+        dataType: 'text',
         success: function(response) {
+            console.log("[INFO] Save success !");
         },
         error: function(xhr) {
+            console.log("[ERROR] Save failed !");
+            console.log(xhr);
         }
     });
 }
@@ -38,7 +44,7 @@ function start(){
 function key_binding_save(){
     window.addEventListener("keydown", event => {
         if (event.key == "²" && event.ctrlKey) {
-            console.log("Manual save!");
+            console.log("[INFO] Manual save!");
             save_datas();
         }
     });

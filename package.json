@@ -25,6 +25,7 @@
     "express": "^4.16.4",
     "fs": "0.0.1-security",
     "http": "0.0.0",
-    "logger": "0.0.1"
+    "logger": "0.0.1",
+    "properties-reader": "0.0.16"
   }
 }

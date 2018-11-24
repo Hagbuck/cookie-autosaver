@@ -8,10 +8,11 @@
  /**
   * Modules dependencies
   */
-var express = require('express')
-  , http    = require('http')
-  , logger  = require('logger')
-  , fs      = require('fs')
+var express         = require('express')
+  , http            = require('http')
+  , logger          = require('logger')
+  , fs              = require('fs')
+  , props_reader    = require('properties-reader')
 ;
 
 /**
@@ -109,6 +110,10 @@ http.createServer(app).listen(app.get('port'), function(){
 });
 
 app.get('/', function(req, res){
+
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+
     var save = req.query.save;
     var file_path = save_folder + getNow() + '.cc';
 
@@ -117,12 +122,13 @@ app.get('/', function(req, res){
     fs.writeFile(file_path, save, function(err){
         if(err){
             logger.error('Writing save failed');
+            res.sendStatus(400);
         } else {
             logger.info('Writing save success');
+            res.sendStatus(200);
             rotate();
         }
     });
-    res.end();
 });
 
 app.listen();
