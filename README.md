@@ -30,7 +30,7 @@ Start the *Node.js command prompt* and go into the poject folder.
 
 Execute `npm install express http fs logger properties-reader` to install all the dependencies.
 
-If you cant customize some features of the server, you can edit the file `conf.properties`. But for now, please don't change the `server.port`, because you can't change it for the client-side.
+If you want customize some features of the server, you can edit the file `conf.properties`. But for now, please don't change the `server.port`, because you can't change it for the client-side.
 
 By the way, the project should be runnable. Execute `node cookie-autosaver.js` to launch the server.
 
