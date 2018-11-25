@@ -36,10 +36,12 @@ function save_datas(){
         dataType    : 'text',
         success     : function(response) {
                         console.log("[INFO] Save success !");
+                        Game.Notify('[INFO] Game save succesfully', server);
                       },
         error       : function(xhr) {
                         console.log("[ERROR] Save failed !");
                         console.log(xhr);
+                        Game.Notify('[ERROR] Game save failed', server);
                       }
     });
 }
