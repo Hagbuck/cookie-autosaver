@@ -1,6 +1,6 @@
 {
   "name": "cookie-autosaver",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Server-client application for cookie clicker to auto save your progress on your hard drive",
   "main": "cookie-autosaver.js",
   "scripts": {
