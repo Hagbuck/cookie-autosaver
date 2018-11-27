@@ -8,8 +8,9 @@
 /**
  * constantes
  */
-var server  = "http://localhost";
+var server  = "localhost";
 var port    = 2018
+var url     = "http://" + server + ":" + port;
 
 /**
  * function which load JQuery
@@ -24,9 +25,9 @@ function load_jquery(){
  * This function send your save to the server
  */
 function save_datas(){
-    console.log("[INFO] Sending save to " + server + ":" + port + " at : " + new Date);
+    console.log("[INFO] Sending save to " + url + " at : " + new Date);
     $.ajax({
-        url         : server + ":" + port,
+        url         : url,
         data        : { 
                         save : Game.WriteSave(1)
                       },
@@ -36,12 +37,12 @@ function save_datas(){
         dataType    : 'text',
         success     : function(response) {
                         console.log("[INFO] Save success !");
-                        Game.Notify('[INFO] Game save succesfully', server);
+                        Game.Notify('<p style="color:green;">[INFO] Game save succesfully</p>', url);
                       },
         error       : function(xhr) {
                         console.log("[ERROR] Save failed !");
                         console.log(xhr);
-                        Game.Notify('[ERROR] Game save failed', server);
+                        Game.Notify('<p style="color:red;">[ERROR] Game save failed<p>', url);
                       }
     });
 }
