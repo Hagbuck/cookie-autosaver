@@ -24,44 +24,57 @@ var save_folder     =   __dirname + '\\saves\\';
 var properties_file =   __dirname + '\\conf.properties';
 
 /**
+ * Colors
+ */
+var Reset       = "\x1b[0m";
+var Bright      = "\x1b[1m";
+var Dim         = "\x1b[2m";
+var Underscore  = "\x1b[4m";
+var Blink       = "\x1b[5m";
+var Reverse     = "\x1b[7m";
+var Hidden      = "\x1b[8m";
+
+var FgBlack     = "\x1b[30m";
+var FgRed       = "\x1b[31m";
+var FgGreen     = "\x1b[32m";
+var FgYellow    = "\x1b[33m";
+var FgBlue      = "\x1b[34m";
+var FgMagenta   = "\x1b[35m";
+var FgCyan      = "\x1b[36m";
+var FgWhite     = "\x1b[37m";
+
+var BgBlack     = "\x1b[40m";
+var BgRed       = "\x1b[41m";
+var BgGreen     = "\x1b[42m";
+var BgYellow    = "\x1b[43m";
+var BgBlue      = "\x1b[44m";
+var BgMagenta   = "\x1b[45m";
+var BgCyan      = "\x1b[46m";
+var BgWhite     = "\x1b[47m";
+
+/**
  * function get now date and time
  */
 function getNow(){
-    var date = new Date(); 
-    var day = date.getDate();
-    var month = date.getMonth()+1;
-    var year = date.getFullYear();
-    var hours = date.getHours();
+    var date    = new Date(); 
+    var day     = date.getDate();
+    var month   = date.getMonth()+1;
+    var year    = date.getFullYear();
+    var hours   = date.getHours();
     var minutes = date.getMinutes();
     var seconds = date.getSeconds();
     
-    if (day < 10) {
-          day = "0" + day;
-    }
-    
-    if (month < 10) {
-          month = "0" + month;
-    }
-    
-    if (hours < 10) {
-          hours = "0" + hours;
-    }
-    
-    if (minutes < 10) {
-          minutes = "0" + minutes;
-    }
-
-    if (seconds < 10) {
-          seconds = "0" + seconds;
-    } 
+    day     =  (day < 10)       ? day       : "0" + day;
+    month   =  (month < 10)     ? month     : "0" + month;
+    hours   =  (hours < 10)     ? hours     : "0" + hours;
+    minutes =  (minutes < 10)   ? minutes   : "0" + minutes;
+    seconds =  (seconds < 10)   ? seconds   : "0" + seconds;
     
     return year + "-" + month + "-" + day + " " + hours + "-" + minutes + "-" + seconds;
-                    ;
-    return datetime;
 }
 
 /**
- * function which rotate the X last files
+ * Rotate the X last files
  */
 function rotate(){
     console.log("----------- ROTATE (" + max_save_files + ") -----------");
@@ -79,16 +92,15 @@ function rotate(){
             }
         }
         
-        console.log(items);
+        //console.log(items);
      
         if(items.length > max_save_files){
-            console.log("DELETE ONE FILE");
             var remove_file = save_folder + items[0];
             logger.info('Remove : ' + remove_file)
             fs.unlinkSync(remove_file, (err) => {
                 if(err){
                     logger.error(err);
-                    throw err;
+                    //throw err;
                 }
             });
             rotate();
@@ -97,7 +109,8 @@ function rotate(){
 }
 
 /**
- * function which use all properties
+ * Apply all properties to the server
+ * This function must be called before the server start
  */
 function apply_properties(props){
     console.log("[INFO] Read properties :");
@@ -121,7 +134,6 @@ function apply_properties(props){
 /**
  * Main execution
  */
-
 logger = logger.createLogger();
 var properties = props_reader(properties_file);
 apply_properties(properties);
@@ -143,6 +155,11 @@ app.get('/', function(req, res){
 
 
     var save = req.query.save;
+    if(!save){
+        logger.error('[ERROR] Any save received');
+        res.sendStatus(400);
+        return;
+    }
     var file_path = save_folder + getNow() + '.cc';
 
     logger.info('SAVE into ' + file_path);
