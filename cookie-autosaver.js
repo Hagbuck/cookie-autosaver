@@ -139,7 +139,7 @@ function rotate(folder, full_rotate = false){
                     //throw err;
                 }
             });
-            rotate();
+            rotate(folder);
         }
     });
 }
