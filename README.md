@@ -1,6 +1,6 @@
 # cookie-autosaver
 
-v0.0.4
+v0.0.5
 
 Develop by Hackbug. 
 
@@ -14,7 +14,7 @@ A *node.js* server will run on your computer. His job is to receive your save an
 
 You will add the *client* **addon** into your cookie clicker game. It will send each **X** minutes your actually save to the server.
 
-To be sure the server will not erased your *saved save*, it will keep on your hard drive, **X** last save. It can be usefull in the case which, by accident, you remove your cookie (Ctrl + F5) for exemple.
+To be sure the server will not erased your *saved save*, it will keep on your hard drive, **X** last save. It can be usefull in the case which, by accident, you remove your cookie for exemple.
 
 To save manually, press `Ctrl + ²`
 

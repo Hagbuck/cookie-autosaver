@@ -1,0 +1,26 @@
+*{
+    color: white;
+}
+
+body{
+    background-color: #555555;
+}
+
+h1{
+    text-align: center;
+}
+
+form{
+    text-align: center;
+    border: solid orange 1px;
+}
+
+label{
+    width: 200px;
+    display: inline-block;
+}
+
+input{
+    margin: 1em;
+    color: black;
+}

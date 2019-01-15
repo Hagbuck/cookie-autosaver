@@ -1,6 +1,6 @@
 {
   "name": "cookie-autosaver",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "description": "Server-client application for cookie clicker to auto save your progress on your hard drive",
   "main": "cookie-autosaver.js",
   "scripts": {
@@ -22,10 +22,10 @@
   },
   "homepage": "https://github.com/Hagbuck/cookie-autosaver#readme",
   "dependencies": {
+    "compression": "^1.7.3",
     "express": "^4.16.4",
     "fs": "0.0.1-security",
     "http": "0.0.0",
-    "logger": "0.0.1",
     "properties-reader": "0.0.16"
   }
 }
