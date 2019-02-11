@@ -21,10 +21,10 @@ var express         = require('express')
  */
 var port            =   2018;
 var max_save_files  =   10;
-var save_folder     =   __dirname + '\\saves\\';
-var properties_file =   __dirname + '\\conf.properties';
-var web_folder      =   __dirname + '\\public';
-var users_file      =   __dirname + '\\users.properties';
+var save_folder     =   __dirname + '/saves/';
+var properties_file =   __dirname + '/conf.properties';
+var web_folder      =   __dirname + '/public';
+var users_file      =   __dirname + '/users.properties';
 var signin_enable   =   false;
 var no_login_allow  =   false;
 
@@ -122,7 +122,7 @@ function rotate(folder, full_rotate = false){
         
         /** Remove folder : dirty way, to change ! **/
         for(var i = 0; i < items.length; ++i){
-            if(fs.lstatSync(folder + '\\' + items[i]).isDirectory()){
+            if(fs.lstatSync(folder + '/' + items[i]).isDirectory()){
                 if(full_rotate)
                     rotate(folder + items[i]);
                 items.splice(i, 1);
@@ -159,7 +159,7 @@ function apply_properties(props){
     if(props_port)
         port = props_port;
     if(props_save_folder)
-        save_folder = props_save_folder + '\\';
+        save_folder = props_save_folder + '/';
     if(props_save_limit
         && props_save_limit > 0)
         max_save_files = props_save_limit;
@@ -196,7 +196,7 @@ function write_entry_into_file(entry, file){
  * Create a file path
  */
 function create_file_path(file){
-    var dir = file.substr(0, file.lastIndexOf('\\'));
+    var dir = file.substr(0, file.lastIndexOf('/'));
 
     if (!fs.existsSync(dir)){
         fs.mkdirSync(dir);
@@ -284,7 +284,7 @@ app.get('/', function(req, res){
 
     if(username){
         if(check_user_password(users, username, password)){
-            save_folder_path = save_folder + username + '\\';
+            save_folder_path = save_folder + username + '/';
             file_path = save_folder_path + getNow() + '.cc';
         }
         else{
@@ -302,7 +302,7 @@ app.get('/', function(req, res){
     create_file_path(file_path);
     fs.writeFile(file_path, save, function(err){
 
-        rotate(save_folder_path); // rotate the current folder
+        rotate(save_folder_path); /* rotate the current folder */
 
         if(err){
             logger.error('Writing save failed');
@@ -322,16 +322,7 @@ app.post('/signin', function(req, res){
     /**
      * Response object
      */
-    var response = {
-        /**
-         * Type : success, error, incomplete
-         */
-        type    : 'success',
-        /**
-         * msg : some informations about the registration
-         */
-        msg     : username + ' registration success'
-    };
+    var response = {};
 
     if(!users || !signin_enable){
         response.type='error';
@@ -348,7 +339,7 @@ app.post('/signin', function(req, res){
     /**
      * Response object
      */
-    var response = {
+    response = {
         /**
          * Type : success, error, incomplete
          */

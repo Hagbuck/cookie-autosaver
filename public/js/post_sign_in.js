@@ -1,10 +1,3 @@
-/**
- * constantes
- */
-var server  = "localhost";
-var port    = 2018
-var url     = "http://" + server + ":" + port;
-
 $(document).ready(function(){
         $('#singin_form').submit(function(event){
             event.preventDefault();
@@ -22,7 +15,7 @@ function post_sign_in(){
     $.ajax({
         type: 'POST',
         contentType: 'application/json',
-        url: url + '/signin',
+        url: '/signin',
         data: JSON.stringify(data),
         dataType: 'json',
         success: function(data, status){

@@ -9,7 +9,7 @@ var Autosaver = {
     version : '0.0.6',
 
     server  : 'localhost',
-    port    : 2018,
+    port    : 80,
     url     : function(){return 'http://' + this.server + ':' + this.port;},
 
     username: null,
